@@ -1,7 +1,6 @@
 import org.junit.*;
 import java.util.*;
 import static org.junit.Assert.*;
-import java.util.ArrayList;
 
 public class BandTest {
 
@@ -46,5 +45,15 @@ public class BandTest {
     newBand.save();
     Band foundBand = Band.find(newBand.getId());
     assertEquals(newBand.getName(), foundBand.getName());
+  }
+
+  @Test
+  public void addVenue_addsVenueToBand_true() {
+    Band newBand = new Band("Radiohead", "Alternative");
+    newBand.save();
+    Venue newVenue = new Venue("The Fillmore", "415-346-3000", "San Francisco", "CA");
+    newVenue.save();
+    newBand.addVenue(newVenue);
+    assertTrue(newBand.getVenues().size() > 0);
   }
 }
