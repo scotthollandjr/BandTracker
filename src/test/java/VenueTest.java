@@ -34,4 +34,26 @@ public class VenueTest {
     Venue newVenue = new Venue("The Fillmore", "415-346-3000", "San Francisco", "CA");
     assertEquals("CA", newVenue.getState());
   }
+
+  @Test
+  public void save_savesVenue_true() {
+    Venue newVenue = new Venue("The Fillmore", "415-346-3000", "San Francisco", "CA");
+    newVenue.save();
+    assertTrue(newVenue.all().size() == 1);
+  }
+
+  @Test
+  public void all_returnsListOfVenues_List() {
+    Venue newVenue = new Venue("The Fillmore", "415-346-3000", "San Francisco", "CA");
+    newVenue.save();
+    assertTrue(newVenue.all() instanceof List);
+  }
+
+  @Test
+  public void find_returnsVenues_true() {
+    Venue newVenue = new Venue("The Fillmore", "415-346-3000", "San Francisco", "CA");
+    newVenue.save();
+    Venue foundVenue = Venue.find(newVenue.getId());
+    assertEquals(newVenue.getName(), foundVenue.getName());
+  }
 }
