@@ -19,6 +19,10 @@ public class Band {
     return genre;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public static List<Band> all() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM bands";
@@ -36,6 +40,15 @@ public class Band {
         .addParameter("genre", this.genre)
         .executeUpdate()
         .getKey();
+    }
+  }
+
+  public static Band find(int idInput) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM bands WHERE id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", idInput)
+        .executeAndFetchFirst(Band.class);
     }
   }
 }

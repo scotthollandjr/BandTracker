@@ -39,4 +39,12 @@ public class BandTest {
     newBand.save();
     assertTrue(newBand.all() instanceof List);
   }
+
+  @Test
+  public void find_returnsBand_true() {
+    Band newBand = new Band("Radiohead", "Alternative");
+    newBand.save();
+    Band foundBand = Band.find(newBand.getId());
+    assertEquals(newBand.getName(), foundBand.getName());
+  }
 }
