@@ -94,5 +94,15 @@ public class App {
       response.redirect("/");
       return null;
     });
+
+    // post("/band/:id/update", (request, response) -> {
+    //   HashMap<String, Object> model = new HashMap<String, Object>();
+    //   String inputName = request.queryParams("name");
+    //   String inputGenre = request.queryParams("genre");
+    //   Band newBand = new Band(inputName, inputGenre);
+    //   newBand.save();
+    //   response.redirect("/");
+    //   return null;
+    // });
   }
 }
