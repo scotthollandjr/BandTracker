@@ -56,4 +56,23 @@ public class BandTest {
     newBand.addVenue(newVenue);
     assertTrue(newBand.getVenues().size() > 0);
   }
+
+  @Test
+  public void delete_deletesBand_true() {
+    Band newBand = new Band("Radiohead", "Alternative");
+    newBand.save();
+    newBand.delete();
+    assertTrue(newBand.getVenues().size() == 0);
+  }
+
+  @Test
+  public void delete_deletesBandFromJoin_true() {
+    Band newBand = new Band("Radiohead", "Alternative");
+    newBand.save();
+    Venue newVenue = new Venue("The Fillmore", "415-346-3000", "San Francisco", "CA");
+    newVenue.save();
+    newBand.addVenue(newVenue);
+    newBand.delete();
+    assertTrue(newVenue.getBands().size() == 0);
+  }
 }

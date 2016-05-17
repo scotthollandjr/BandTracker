@@ -94,4 +94,18 @@ public class Band {
     }
   }
 
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteBands = "DELETE FROM bands WHERE id=:id";
+      con.createQuery(deleteBands)
+        .addParameter("id", this.id)
+        .executeUpdate();
+
+      String deleteJoin ="DELETE FROM bands_venues WHERE band_id=:band_id";
+      con.createQuery(deleteJoin)
+        .addParameter("band_id", this.id)
+        .executeUpdate();
+    }
+  }
+
 }
