@@ -10,21 +10,23 @@
 
   <h3>Add a band:</h3>
   <form action="/band/new" method="post">
-    <div class="form-group">
-      <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+      </div>
+      <div class="form-group col-xs-4">
+        <select class="form-control" name="genre" id="genre">
+          <option name="genre" selected="selected" disabled>Select a genre:</option>
+          <option name="genre" id="genre" value="Rock">Rock</option>
+          <option name="genre" id="genre" value="Hip-Hop">Hip-Hop</option>
+          <option name="genre" id="genre" value="Country">Country</option>
+          <option name="genre" id="genre" value="Alternative">Alternative</option>
+          <option name="genre" id="genre" value="Pop">Pop</option>
+          <option name="genre" id="genre" value="Indie">Indie</option>
+        </select>
+      </div>
+      <button class="btn btn-success" type="submit">Add</button>
     </div>
-    <div class="form-group col-xs-5">
-      <select class="form-control" name="genre" id="genre">
-        <option name="genre" selected="selected" disabled>Select a genre:</option>
-        <option name="genre" id="genre" value="Rock">Rock</option>
-        <option name="genre" id="genre" value="Hip-Hop">Hip-Hop</option>
-        <option name="genre" id="genre" value="Country">Country</option>
-        <option name="genre" id="genre" value="Alternative">Alternative</option>
-        <option name="genre" id="genre" value="Pop">Pop</option>
-        <option name="genre" id="genre" value="Indie">Indie</option>
-      </select>
-    </div>
-    <button class="btn btn-success" type="submit">Add</button>
   </form>
 </div>
 
@@ -40,19 +42,23 @@
 
   <h3>Add a venue:</h3>
   <form action="/venue/new" method="post">
-    <div class="form-group">
-      <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+    <div class="row">
+      <div class="form-group col-xs-7">
+        <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+      </div>
+      <div class="form-group col-xs-5">
+        <input class="form-control" for="number" id="number" name="number" placeholder="Phone number:"></input>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control" for="number" id="number" name="number" placeholder="Phone number:"></input>
+    <div class="row">
+      <div class="form-group col-xs-7">
+        <input class="form-control" for="city" id="city" name="city" placeholder="City:"></input>
+      </div>
+      <div class="form-group col-xs-3">
+        <input class="form-control" for="state" id="state" name="state" placeholder="State:"></input>
+      </div>
+      <button class="btn btn-success" type="submit">Add</button>
     </div>
-    <div class="form-group">
-      <input class="form-control" for="city" id="city" name="city" placeholder="City:"></input>
-    </div>
-    <div class="form-group">
-      <input class="form-control" for="state" id="state" name="state" placeholder="State:"></input>
-    </div>
-    <button class="btn btn-success" type="submit">Add</button>
   </form>
 </div>
 </div>

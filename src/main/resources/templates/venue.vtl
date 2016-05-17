@@ -1,27 +1,37 @@
 <h1>$venue.getName()</h1>
-<h3>$venue.getCity()</h3>
+<h3>$venue.getNumber()</h3>
+<p>$venue.getCity(), $venue.getState()</p>
 
 <div class="col-xs-6">
   <h3>Shows:</h3>
   <ul>
-    <!-- #foreach ($venue in $venue.getBands())
+    #foreach ($venue in $venue.getBands())
       <li>$venue.getName()</li>
-    #end -->
+    #end
   </ul>
 </div>
 
 <div class="col-xs-6">
-  <h3>Add a show:</h3>
-  <form action="/venue/:id/venue/new" method="post">
-    <div class="form-group">
-      <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+  <h3>Add a band that played here:</h3>
+  <form action="/venue/:id/band/new" method="post">
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+      </div>
+      <div class="form-group col-xs-4">
+        <select class="form-control" name="genre" id="genre">
+          <option name="genre" selected="selected" disabled>Select a genre:</option>
+          <option name="genre" id="genre" value="Rock">Rock</option>
+          <option name="genre" id="genre" value="Hip-Hop">Hip-Hop</option>
+          <option name="genre" id="genre" value="Country">Country</option>
+          <option name="genre" id="genre" value="Alternative">Alternative</option>
+          <option name="genre" id="genre" value="Pop">Pop</option>
+          <option name="genre" id="genre" value="Indie">Indie</option>
+        </select>
+      </div>
+      <button class="btn btn-success" type="submit">Add</button>
     </div>
-    <div class="form-group">
-      <input class="form-control" for="number" id="number" name="number" placeholder="Phone number:"></input>
-    </div>
-    <div class="form-group">
-      <input class="form-control" for="city" id="city" name="city" placeholder="City:"></input>
-    </div>
-    <button class="btn btn-success" type="submit">Add</button>
   </form>
 </div>
+
+<a href="/" class="btn btn-primary">Return Home</a>
