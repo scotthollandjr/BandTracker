@@ -23,6 +23,18 @@ public class Band {
     return id;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Band)) {
+      return false;
+    } else {
+      Band newBand = (Band) obj;
+      return this.getId() == newBand.getId() &&
+      this.getName() == newBand.getName() &&
+      this.getGenre() == newBand.getGenre();
+    }
+  }
+
   public static List<Band> all() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM bands";
