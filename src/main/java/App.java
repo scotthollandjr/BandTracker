@@ -55,18 +55,34 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // post("/band/:id/venue/new", (request, response) -> {
-    //   HashMap<String, Object> model = new HashMap<String, Object>();
-    //   Band newBand = Band.find(Integer.parseInt(request.params(":id")));
-    //   String inputName = request.queryParams("name");
-    //   String inputNumber = request.queryParams("number");
-    //   String inputCity = request.queryParams("city");
-    //   String inputState = request.queryParams("state");
-    //   Venue newVenue = new Venue(inputName, inputNumber, inputCity, inputState);
-    //   newVenue.save();
-    //   newBand.addVenue(newVenue);
-    //   response.redirect("/band/" + newBand.getId());
-    //   return null;
-    // });
+    post("/band/:id/venue/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Integer idInt = Integer.parseInt(request.queryParams("idInput"));
+      String inputName = request.queryParams("name");
+      String inputNumber = request.queryParams("number");
+      String inputCity = request.queryParams("city");
+      String inputState = request.queryParams("state");
+      Band newBand = Band.find(idInt);
+      Venue newVenue = new Venue(inputName, inputNumber, inputCity, inputState);
+      newVenue.save();
+      newBand.addVenue(newVenue);
+      model.put("band", newBand);
+      response.redirect("/band/" + newBand.getId());
+      return null;
+    });
+
+    post("/venue/:id/band/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Integer idInt = Integer.parseInt(request.queryParams("idInput"));
+      String inputName = request.queryParams("name");
+      String inputGenre = request.queryParams("genre");
+      Band newBand = new Band(inputName, inputGenre);
+      Venue newVenue = Venue.find(idInt);
+      newBand.save();
+      newVenue.addBand(newBand);
+      model.put("venue", newVenue);
+      response.redirect("/venue/" + newVenue.getId());
+      return null;
+    });
   }
 }
