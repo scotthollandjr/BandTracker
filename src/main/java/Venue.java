@@ -35,6 +35,20 @@ public class Venue {
     return id;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Venue)) {
+      return false;
+    } else {
+      Venue newVenue = (Venue) obj;
+      return this.getId() == newVenue.getId() &&
+      this.getName() == newVenue.getName() &&
+      this.getNumber() == newVenue.getNumber() &&
+      this.getCity() == newVenue.getCity() &&
+      this.getState() == newVenue.getState();
+    }
+  }
+
   public static List<Venue> all() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM venues";
@@ -63,6 +77,36 @@ public class Venue {
       return con.createQuery(sql)
         .addParameter("id", idInput)
         .executeAndFetchFirst(Venue.class);
+    }
+  }
+
+  public void addBand(Band band) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO bands_venues(band_id, venue_id) VALUES (:band_id, :venue_id)";
+      con.createQuery(sql)
+        .addParameter("venue_id", this.id)
+        .addParameter("band_id", band.getId())
+        .executeUpdate();
+    }
+  }
+
+  public List<Band> getBands() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT band_id FROM bands_venues WHERE venue_id=:id";
+      List<Integer> bandIds = con.createQuery(sql)
+        .addParameter("id", this.getId())
+        .executeAndFetch(Integer.class);
+
+      List<Band> bands = new ArrayList<Band>();
+
+      for (Integer bandId : bandIds) {
+        String bandQuery = "SELECT * FROM bands WHERE id=:bandId";
+        Band band = con.createQuery(bandQuery)
+          .addParameter("bandId", bandId)
+          .executeAndFetchFirst(Band.class);
+        bands.add(band);
+      }
+      return bands;
     }
   }
 }
