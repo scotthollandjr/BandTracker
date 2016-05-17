@@ -84,5 +84,15 @@ public class App {
       response.redirect("/venue/" + newVenue.getId());
       return null;
     });
+
+    get("/band/:id/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String inputName = request.queryParams("name");
+      String inputGenre = request.queryParams("genre");
+      Band newBand = Band.find(Integer.parseInt(request.params(":id")));
+      newBand.delete();
+      response.redirect("/");
+      return null;
+    });
   }
 }
