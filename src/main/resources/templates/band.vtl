@@ -5,7 +5,9 @@
   <h3>Shows:</h3>
   <ul>
     #foreach ($venue in $band.getVenues())
-      <li>$venue.getName()</li>
+      <li>
+        <h4><a href="/venue/$venue.getId()">$venue.getName()</a></h4>
+      </li>
     #end
   </ul>
 </div>

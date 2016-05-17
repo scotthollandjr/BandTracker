@@ -5,8 +5,10 @@
 <div class="col-xs-6">
   <h3>Shows:</h3>
   <ul>
-    #foreach ($venue in $venue.getBands())
-      <li>$venue.getName()</li>
+    #foreach ($band in $venue.getBands())
+      <li>
+        <h4><a href="/band/$band.getId()">$band.getName()</a></h4>
+      </li>
     #end
   </ul>
 </div>
