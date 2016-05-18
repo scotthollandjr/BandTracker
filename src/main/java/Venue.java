@@ -109,4 +109,18 @@ public class Venue {
       return bands;
     }
   }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteVenues = "DELETE FROM venues WHERE id=:id";
+      con.createQuery(deleteVenues)
+        .addParameter("id", this.id)
+        .executeUpdate();
+
+      String deleteJoin = "DELETE FROM bands_venues WHERE venue_id=:venue_id";
+      con.createQuery(deleteJoin)
+        .addParameter("venue_id", this.id)
+        .executeUpdate();
+    }
+  }
 }

@@ -1,38 +1,43 @@
-<h1>$venue.getName()</h1>
-<h3>$venue.getNumber()</h3>
-<p>$venue.getCity(), $venue.getState()</p>
+<div class="row">
+  <div class="col-xs-1">
+  </div>
 
-<div class="col-xs-6">
-  <h3>Shows:</h3>
-  <ul>
-    #foreach ($venue in $venue.getBands())
-      <li>$venue.getName()</li>
-    #end
-  </ul>
-</div>
+  <h1>$venue.getName()</h1>
+  <h3>$venue.getNumber()</h3>
+  <p>$venue.getCity(), $venue.getState()</p>
 
-<div class="col-xs-6">
-  <h3>Add a band that played here:</h3>
-  <form action="/venue/:id/band/new" method="post">
-    <div class="row">
-      <div class="form-group col-xs-6">
-        <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+  <div class="col-xs-5">
+
+    <h3>Shows:</h3>
+    <ul>
+      #foreach ($band in $venue.getBands())
+        <li>
+          <h4><a href="/band/$band.getId()">$band.getName()</a></h4>
+        </li>
+      #end
+    </ul>
+  </div>
+
+  <div class="col-xs-5">
+    <h3>Add a band that played here:</h3>
+    <form action="/venue/:id/band/new" method="post">
+      <div class="row">
+        <div class="form-group col-xs-10">
+          <select class="form-control" name="band" id="band">
+            <option name="band" selected="selected" disabled>Select a band:</option>
+            #foreach ($band in $bands)
+              <option name="band" value="$band.getId()">$band.getName()</option>
+            #end
+          </select>
+        </div>
+        <input type="hidden" name="idInput" value="$venue.getId()">
+        <button class="btn btn-success" type="submit">Add</button>
       </div>
-      <div class="form-group col-xs-4">
-        <select class="form-control" name="genre" id="genre">
-          <option name="genre" selected="selected" disabled>Select a genre:</option>
-          <option name="genre" id="genre" value="Rock">Rock</option>
-          <option name="genre" id="genre" value="Hip-Hop">Hip-Hop</option>
-          <option name="genre" id="genre" value="Country">Country</option>
-          <option name="genre" id="genre" value="Alternative">Alternative</option>
-          <option name="genre" id="genre" value="Pop">Pop</option>
-          <option name="genre" id="genre" value="Indie">Indie</option>
-        </select>
-      </div>
-      <input type="hidden" name="idInput" value="$venue.getId()">
-      <button class="btn btn-success" type="submit">Add</button>
-    </div>
-  </form>
+    </form>
+  </div>
+  <div class="col-xs-1">
+  </div>
 </div>
 
 <a href="/" class="btn btn-primary">Return Home</a>
+<a href="/venue/$venue.getId()/delete" class="btn btn-danger">Delete Venue</a>

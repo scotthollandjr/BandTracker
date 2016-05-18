@@ -4,7 +4,9 @@
   <h3>Bands:</h3>
   <ul>
     #foreach ($band in $bands)
-      <li><a href="/band/$band.getId()">$band.getName()</a> ($band.getGenre())</li>
+      <li>
+        <h4><a href="/band/$band.getId()">$band.getName()</a> ($band.getGenre())</h4>
+      </li>
     #end
   </ul>
 
