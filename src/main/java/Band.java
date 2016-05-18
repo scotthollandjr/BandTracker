@@ -108,4 +108,25 @@ public class Band {
     }
   }
 
+  public void updateBand(String newName, String newGenre) {
+    if (newName.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String nameQuery = "UPDATE bands SET name=:name WHERE id=:id";
+        con.createQuery(nameQuery)
+          .addParameter("name", newName)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
+    }
+    if (newGenre != null) {
+      try(Connection con = DB.sql2o.open()) {
+        String genreQuery = "UPDATE bands SET genre=:genre WHERE id=:id";
+        con.createQuery(genreQuery)
+          .addParameter("genre", newGenre)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
+    }
+  }
+
 }

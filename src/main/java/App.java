@@ -98,14 +98,15 @@ public class App {
       return null;
     });
 
-    // post("/band/:id/update", (request, response) -> {
-    //   HashMap<String, Object> model = new HashMap<String, Object>();
-    //   String inputName = request.queryParams("name");
-    //   String inputGenre = request.queryParams("genre");
-    //   Band newBand = new Band(inputName, inputGenre);
-    //   newBand.save();
-    //   response.redirect("/");
-    //   return null;
-    // });
+    post("/band/:id/update", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Integer idInt = Integer.parseInt(request.queryParams("idInput"));
+      Band newBand = Band.find(idInt);
+      String inputName = request.queryParams("name");
+      String inputGenre = request.queryParams("genre");
+      newBand.updateBand(inputName, inputGenre);
+      response.redirect("/");
+      return null;
+    });
   }
 }
