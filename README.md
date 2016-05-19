@@ -21,7 +21,7 @@ https://github.com/theAppanaut/BandTracker.git
 
 In the terminal, import the datebase by creating a blank datebase called "pocket_cats", then typing the following:
 
-```psql pocket_cats < pocket_cats.sql
+```psql pocket_cats < pocket_cats.sql```
 
 #### License
 
