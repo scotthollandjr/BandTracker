@@ -19,6 +19,10 @@ Install the project files by following the link below and cloning this repositor
 
 https://github.com/theAppanaut/BandTracker.git
 
+In the terminal, import the datebase by creating a blank datebase called "pocket_cats", then typing the following:
+
+```psql pocket_cats < pocket_cats.sql
+
 #### License
 
 MIT License. Copyright (c) 2016 **_Scott Holland, Jr._**
