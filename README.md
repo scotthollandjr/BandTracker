@@ -1,4 +1,4 @@
-# _Java Advanced Databases Independent project_
+# _Band Tracker project_
 
 ##### _5/13/2016_
 
